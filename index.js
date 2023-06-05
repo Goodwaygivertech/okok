@@ -1,5 +1,6 @@
 require("dotenv").config();
 const cors = require("cors");
+const path = require("path");
 const Port = process.env.PORT || 5000;
 const express = require("express");
 const connectToMongo = require("./db");
@@ -18,7 +19,7 @@ connectToMongo();
 app.use(express.json());
 // app.use(morgan('default'));
 
-app.use(express.static("public"));
+app.use(express.static(path.resolve(__dirname, "public")));
 app.use("/products", productRouter.router);
 app.use("/users", userRouter.router);
 
